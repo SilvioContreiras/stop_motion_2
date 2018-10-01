@@ -1,0 +1,45 @@
+
+<style>
+	body {
+    height: 1200px;
+}
+
+#rotator {
+    font-size: 416px;
+    width: 1em;
+    height: 1em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background: transparent url(http://www.3sessanta.it/images/polaroid/sprite_polaroid_total.jpg) no-repeat 0 0;
+    margin: 0 41% auto;
+}
+</style>
+
+
+<div id="rotator"></div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+	$(function() {
+
+    var rotator = $('#rotator');
+    var container = $(document);
+    var viewport = $(window);
+    
+    var images = 72;
+    var imageHeight = 30000 / images;
+    var scrollHeight = container.height() - viewport.height() + imageHeight;
+    var step = images / scrollHeight;
+    
+    viewport.scroll(function(event) {
+    
+        var x = -Math.floor(step * viewport.scrollTop()) * imageHeight;
+        rotator.css('background-position', x + 'px 0');
+    
+    });
+
+});
+</script>
